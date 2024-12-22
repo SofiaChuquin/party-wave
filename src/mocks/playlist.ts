@@ -1,21 +1,20 @@
 
 export interface Playlist {
   id: string;
-  title: string;
+  name: string;
   description: string;
   imageUrl?: string;
-  trackCount?: number;
+  tracks?: any;
   duration: string;
   createdBy: string;
   createdDate: string;
-
 }
 
 
 export const allPlaylists = [
   {
       "id": "1",
-      "title": "Chill Vibes",
+      "name": "Chill Vibes",
       "description": "Relax and unwind with these smooth tunes.",
       "imageUrl": "https://example.com/images/chill-vibes.jpg",
       "trackCount": 25,
@@ -25,7 +24,7 @@ export const allPlaylists = [
   },
   {
       "id": "2",
-      "title": "Workout Motivation",
+      "name": "Workout Motivation",
       "description": "Get pumped with these high-energy tracks.",
       "imageUrl": "https://example.com/images/workout-motivation.jpg",
       "trackCount": 15,
@@ -35,7 +34,7 @@ export const allPlaylists = [
   },
   {
       "id": "3",
-      "title": "Classic Rock Hits",
+      "name": "Classic Rock Hits",
       "description": "Timeless rock anthems from the 70s and 80s.",
       "imageUrl": "https://example.com/images/classic-rock.jpg",
       "trackCount": 20,
@@ -45,7 +44,7 @@ export const allPlaylists = [
   },
   {
       "id": "4",
-      "title": "Indie Favorites",
+      "name": "Indie Favorites",
       "description": "A collection of the best indie tracks of the year.",
       "imageUrl": "https://example.com/images/indie-favorites.jpg",
       "trackCount": 18,
@@ -55,7 +54,7 @@ export const allPlaylists = [
   },
   {
       "id": "5",
-      "title": "Jazz Classics",
+      "name": "Jazz Classics",
       "description": "Smooth jazz tracks for a relaxing evening.",
       "imageUrl": "https://example.com/images/jazz-classics.jpg",
       "trackCount": 12,

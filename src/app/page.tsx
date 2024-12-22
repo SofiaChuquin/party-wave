@@ -1,20 +1,42 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PlaylistCard from '../components/PlaylistCard';
 import SearchBar from '../components/SearchBar';
 import { Playlist, allPlaylists } from '@/mocks/playlist';
 import { useRouter } from 'next/navigation';
+import { getPlaylists } from '@/services/spotifyApi';
 
 const HomePage: React.FC = () => {
+  const [playlists, setPlaylists] = useState<Playlist[]>([]);
+  const [loading, setLoading] = useState(true);
   const [filteredPlaylists, setFilteredPlaylists] =
     useState<Playlist[]>(allPlaylists);
   const router = useRouter();
 
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      try {
+        const data = await getPlaylists();
+        setPlaylists(data);
+        setFilteredPlaylists(data);
+      } catch (error) {
+        console.error('Error fetching playlists:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPlaylists();
+  }, []);
+
   const handleSearch = (query: string) => {
-    const searchResults = allPlaylists.filter(
-      (playlist) =>
-        playlist.title.toLowerCase().includes(query.toLowerCase()) ||
-        playlist.description.toLowerCase().includes(query.toLowerCase())
+    if (!query) {
+      setFilteredPlaylists(playlists);
+      return;
+    }
+
+    const searchResults = playlists.filter((playlist) =>
+      playlist.name.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredPlaylists(searchResults);
   };
@@ -26,6 +48,8 @@ const HomePage: React.FC = () => {
   const handleCreateNew = () => {
     router.push('/playlist/create');
   };
+
+  if (loading) return <p>Loading playlists...</p>;
 
   return (
     <div className='max-w-4xl mx-auto p-6'>
@@ -44,10 +68,10 @@ const HomePage: React.FC = () => {
         <PlaylistCard
           playlist={{
             id: 'add-new',
-            title: 'Create New Playlist',
+            name: 'Create New Playlist',
             description: 'Tap to create a new playlist.',
             imageUrl: 'https://example.com/images/create-playlist.jpg',
-            trackCount: 0,
+            tracks: { total: 0 },
             duration: 'N/A',
             createdBy: 'N/A',
             createdDate: 'N/A',
