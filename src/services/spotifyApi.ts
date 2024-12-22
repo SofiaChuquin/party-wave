@@ -8,7 +8,7 @@ const api = axios.create({
 // GET: Obtener playlists
 export const getPlaylists = async (): Promise<Playlist[]> => {
   try {
-    const response = await api.get<any>('/spotify/playlists');
+    const response = await api.get<{items: Playlist[], total: number}>('/spotify/playlists');
     return response.data.items;
   } catch (error) {
     console.error('Error fetching playlists:', error);
