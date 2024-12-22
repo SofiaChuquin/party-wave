@@ -4,7 +4,9 @@ export interface Playlist {
   name: string;
   description: string;
   imageUrl?: string;
-  tracks?: any;
+  tracks?: {
+    total: number;
+  };
   duration: string;
   createdBy: string;
   createdDate: string;
