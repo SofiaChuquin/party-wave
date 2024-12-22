@@ -26,3 +26,27 @@ export const createPlaylist = async (playlistData: Omit<Playlist, 'id'>): Promis
     throw error;
   }
 };
+
+// PUT: Actualizar una playlist existente
+export const updatePlaylist = async (
+  id: string,
+  updatedData: Partial<Omit<Playlist, 'id'>>
+): Promise<Playlist> => {
+  try {
+    const response = await api.put<Playlist>(`/spotify/playlists/${id}`, updatedData);
+    return response.data;
+  } catch (error) {
+    console.error(`Error updating playlist with id ${id}:`, error);
+    throw error;
+  }
+};
+
+// DELETE: Eliminar una playlist
+export const deletePlaylist = async (id: string): Promise<void> => {
+  try {
+    await api.delete(`/spotify/playlists/${id}`);
+  } catch (error) {
+    console.error(`Error deleting playlist with id ${id}:`, error);
+    throw error;
+  }
+};
