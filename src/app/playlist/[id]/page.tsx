@@ -74,7 +74,7 @@ const PlaylistDetail: React.FC = () => {
               <span className='text-6xl'>🎵</span>
             </div>
             <div className='flex-1'>
-              <h1 className='text-4xl font-bold mb-2'>{playlist.title}</h1>
+              <h1 className='text-4xl font-bold mb-2'>{playlist.name}</h1>
               <p className='text-white/80 mb-4'>{playlist.description}</p>
               <div className='flex items-center gap-4 text-sm'>
                 <span>{playlist.trackCount} tracks</span>

@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 
 interface PlaylistFormProps {
   initialData?: {
-    title: string;
+    name: string;
     description: string;
     trackCount: number;
     duration: string;
@@ -14,7 +14,7 @@ interface PlaylistFormProps {
 const CreatePlaylist: React.FC<PlaylistFormProps> = ({ initialData }) => {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    title: '',
+    name: '',
     description: '',
     trackCount: 0,
     duration: '',
@@ -65,7 +65,7 @@ const CreatePlaylist: React.FC<PlaylistFormProps> = ({ initialData }) => {
             <input
               type='text'
               name='title'
-              value={formData.title}
+              value={formData.name}
               onChange={handleChange}
               className='w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/70 focus:outline-none focus:border-white focus:ring-2 focus:ring-white/20'
               placeholder='Enter playlist title'

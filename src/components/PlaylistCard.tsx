@@ -33,12 +33,12 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({
     >
       <div>
         <h2 className='text-xl font-semibold mb-2'>
-          {isAddNew ? 'Create New Playlist' : playlist.title}
+          {isAddNew ? 'Create New Playlist' : playlist.name}
         </h2>
         <p className='text-sm mb-4 opacity-90'>
           {isAddNew
             ? 'Tap to create a new playlist'
-            : `${playlist.trackCount} songs`}
+            : `${playlist.tracks != null ? playlist.tracks.total : 0} songs`}
         </p>
       </div>
       <div className='flex gap-2 justify-end'>
